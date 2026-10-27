@@ -19,7 +19,7 @@ backend:
   rules: firestore.rules - public read; write only team email + field/size validation; no deletes
   verified_2026-10-27: 11/11 REST rule checks + 8/8 two-browser Playwright checks + live page connects
   admin_scripts: private/ (fbtok.js = access token from firebase CLI login; setup.js; sectest.js)
-  change_code: rerun private/setup.js (generates a new code, updates the team account) then tell users
+  change_code: node private/setcode.js <token from private/fbtok.js> <new-code> private  (code set to Neil-chosen value 2026-10-27; see private/team-code.txt)
 gotchas:
   - firebase CLI hangs on exit in Git Bash (libuv assertion) -> use REST with token from private/fbtok.js
   - initializeAuth API needs billing; Auth must be started via console "Get started" (done)
