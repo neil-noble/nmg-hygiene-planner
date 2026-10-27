@@ -1,0 +1,12 @@
+project: NMG Hygiene Planner
+created: 2026-10-27
+goal: duplicate NMG-Hygiene-Planner.html (from M. Shanhun's OneDrive, NMG Corporate) and host at www.emergencyservicesaustralia.com.au/nmgohstracker
+source:
+  sharepoint: personal/mshanhun_newmurchgold_com_au/Documents/Desktop/NMG/NMG Corporate/NMG-Hygiene-Planner.html
+  access: needs an NMG login (302 to authenticate.aspx); Neil must download it and drop it in site/
+hosting_plan: GitHub Pages repo + Wix page /nmgohstracker embedding it (same pattern as nmg-ohs-dashboard / nmgcpofuel); the Wix page is a manual editor step
+phase: 1-awaiting-source-file
+next:
+  - Neil saves NMG-Hygiene-Planner.html into C:\claude\NMG Hygiene Planner\site\
+  - review the file (external scripts, data storage, any sensitive data) before publishing
+  - create repo + enable Pages, then Wix page /nmgohstracker
