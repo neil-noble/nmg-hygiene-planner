@@ -1,0 +1,22 @@
+rules_version = '2';
+// Anyone may read the register; only the shared team login may write, and only well-formed task entries.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /years/{year}/entries/{key} {
+      allow read: if true;
+      allow create, update: if request.auth != null
+        && request.auth.token.email == 'team@nmg-hygiene-planner.web.app'
+        && year.matches('^20[0-9][0-9]$')
+        && key.size() <= 40
+        && request.resource.data.keys().hasOnly(['done', 'by', 'at', 'note'])
+        && request.resource.data.done is bool
+        && (request.resource.data.by == null || (request.resource.data.by is string && request.resource.data.by.size() <= 12))
+        && (request.resource.data.at == null || (request.resource.data.at is string && request.resource.data.at.size() <= 40))
+        && request.resource.data.note is string && request.resource.data.note.size() <= 300;
+      allow delete: if false;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
