@@ -8,10 +8,20 @@ hosting:
   pages_url: https://neil-noble.github.io/nmg-hygiene-planner/
   verified: 2026-10-27 live md5 == local
   wix_page: /nmgohstracker — MANUAL editor step (Embed > HTML iframe, URL above); not yet confirmed done
-app_facts:
-  storage: localStorage only (key nmg-hygiene-planner-<year>); ticks/notes are per browser, NOT shared between users
-  iframe_risk: inside the Wix iframe, Safari/strict browsers may block storage -> page shows "Not saving" banner; CSV export still works
-  externals: Google Fonts only; logo is embedded base64; no network calls, no secrets
-  years: 2027, 2028 selectable
-phase: 2-live-on-pages-awaiting-wix-page
-open_question: should ticks be shared across all users (needs a backend), or is per-browser OK for Mark?
+changes_from_original:
+  - 2026-10-27 removed NMG logo + "WHS Governance & Compliance" brand strip (Neil)
+  - 2026-10-27 localStorage -> shared Firestore register; team code required to edit (Neil: several people need same progress)
+backend:
+  firebase_project: nmg-hygiene-planner (Spark/free, Neil's Google account; Firestore australia-southeast1)
+  data: years/{year}/entries/{taskId|period} = {done,by,at,note}; live via onSnapshot
+  auth: one shared account team@nmg-hygiene-planner.web.app; its password = the TEAM CODE (private/team-code.txt, gitignored, NEVER commit; repo is public)
+  signup: disabled (client.permissions.disabledUserSignup) so nobody else can create accounts
+  rules: firestore.rules - public read; write only team email + field/size validation; no deletes
+  verified_2026-10-27: 11/11 REST rule checks + 8/8 two-browser Playwright checks + live page connects
+  admin_scripts: private/ (fbtok.js = access token from firebase CLI login; setup.js; sectest.js)
+  change_code: rerun private/setup.js (generates a new code, updates the team account) then tell users
+gotchas:
+  - firebase CLI hangs on exit in Git Bash (libuv assertion) -> use REST with token from private/fbtok.js
+  - initializeAuth API needs billing; Auth must be started via console "Get started" (done)
+  - Mark's pre-existing ticks were in his own browser localStorage; not migrated
+phase: 3-live-shared-awaiting-wix-page
