@@ -1,13 +1,13 @@
 project: NMG Hygiene Planner
 created: 2026-10-27
 owner_request: Mark Shanhun (NMG) shared his planner and asked Neil to host it
-goal: host NMG-Hygiene-Planner.html at www.emergencyservicesaustralia.com.au/nmgohstracker
+goal: host NMG-Hygiene-Planner.html on the ESA Wix site (live URL /nmghygieneplanner; originally asked for /nmgohstracker)
 source: docs/NMG-Hygiene-Planner.html (original, untouched); docs/index.html = served copy (identical)
 hosting:
   repo: neil-noble/nmg-hygiene-planner (public; Pages from master:/docs)
   pages_url: https://neil-noble.github.io/nmg-hygiene-planner/
   verified: 2026-10-27 live md5 == local
-  wix_page: /nmgohstracker — MANUAL editor step (Embed > HTML iframe, URL above); not yet confirmed done
+  wix_page: https://www.emergencyservicesaustralia.com.au/nmghygieneplanner (Neil added 2026-10-27; embeds pages_url)
 changes_from_original:
   - 2026-10-27 removed NMG logo + "WHS Governance & Compliance" brand strip (Neil)
   - 2026-10-27 localStorage -> shared Firestore register; team code required to edit (Neil: several people need same progress)
@@ -24,4 +24,4 @@ gotchas:
   - firebase CLI hangs on exit in Git Bash (libuv assertion) -> use REST with token from private/fbtok.js
   - initializeAuth API needs billing; Auth must be started via console "Get started" (done)
   - Mark's pre-existing ticks were in his own browser localStorage; not migrated
-phase: 3-live-shared-awaiting-wix-page
+phase: 4-live-complete
