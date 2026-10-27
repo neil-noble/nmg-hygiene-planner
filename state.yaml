@@ -1,12 +1,17 @@
 project: NMG Hygiene Planner
 created: 2026-10-27
-goal: duplicate NMG-Hygiene-Planner.html (from M. Shanhun's OneDrive, NMG Corporate) and host at www.emergencyservicesaustralia.com.au/nmgohstracker
-source:
-  sharepoint: personal/mshanhun_newmurchgold_com_au/Documents/Desktop/NMG/NMG Corporate/NMG-Hygiene-Planner.html
-  access: needs an NMG login (302 to authenticate.aspx); Neil must download it and drop it in site/
-hosting_plan: GitHub Pages repo + Wix page /nmgohstracker embedding it (same pattern as nmg-ohs-dashboard / nmgcpofuel); the Wix page is a manual editor step
-phase: 1-awaiting-source-file
-next:
-  - Neil saves NMG-Hygiene-Planner.html into C:\claude\NMG Hygiene Planner\site\
-  - review the file (external scripts, data storage, any sensitive data) before publishing
-  - create repo + enable Pages, then Wix page /nmgohstracker
+owner_request: Mark Shanhun (NMG) shared his planner and asked Neil to host it
+goal: host NMG-Hygiene-Planner.html at www.emergencyservicesaustralia.com.au/nmgohstracker
+source: docs/NMG-Hygiene-Planner.html (original, untouched); docs/index.html = served copy (identical)
+hosting:
+  repo: neil-noble/nmg-hygiene-planner (public; Pages from master:/docs)
+  pages_url: https://neil-noble.github.io/nmg-hygiene-planner/
+  verified: 2026-10-27 live md5 == local
+  wix_page: /nmgohstracker — MANUAL editor step (Embed > HTML iframe, URL above); not yet confirmed done
+app_facts:
+  storage: localStorage only (key nmg-hygiene-planner-<year>); ticks/notes are per browser, NOT shared between users
+  iframe_risk: inside the Wix iframe, Safari/strict browsers may block storage -> page shows "Not saving" banner; CSV export still works
+  externals: Google Fonts only; logo is embedded base64; no network calls, no secrets
+  years: 2027, 2028 selectable
+phase: 2-live-on-pages-awaiting-wix-page
+open_question: should ticks be shared across all users (needs a backend), or is per-browser OK for Mark?
